@@ -1,0 +1,50 @@
+.slice__page__features {
+    overflow: visible;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.slice__page__features__title {
+    text-align: center;
+}
+
+.slice__page__features__simple-container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.slice__page__features__simple-element-outer{
+    margin-bottom: 50px;
+}
+
+.slice__page__features__simple-element-inner{
+    margin-left: 10px;
+    margin-right: 10px;
+    box-shadow: #eeeeeebb 0px 0px 12px;
+    border: 2px solid #EEE;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.slice__page__features__simple-element-inner:hover{
+    box-shadow: #3566b5bb 0px 0px 12px;
+}
+
+.slice__page__features__simple-icon{
+    height: 60px;
+    width: 60px;
+    margin-bottom: 20px;
+    color: #3567b5;
+}
+
+.slice__page__features__simple-name{
+    height: 60px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,43 @@
+{
+    "compilerOptions": {
+        "outDir": "dist",
+        "target": "es5",
+        "lib": [
+            "dom",
+            "es2017",
+            "es5",
+            "es6",
+            "es7"
+        ],
+        "downlevelIteration": true, // Allows [... new Set()]
+        "allowJs": false,
+        "skipLibCheck": true,
+        "strict": false,
+        "forceConsistentCasingInFileNames": true,
+        "esModuleInterop": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "declaration": true,
+        "sourceMap": false,
+        //"noImplicitAny": true,
+        //"noImplicitThis": true,
+        //"noImplicitReturns": true,
+        //"noUnusedLocals": true,
+        //"noUnusedParameters": true,
+        "jsx": "react",
+        //"baseUrl": "src",
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "node_modules",
+        "docs/*",
+        "webpack.config.*",
+        "*.js",
+        "__tests__",
+        "examples"
+    ]
+}
