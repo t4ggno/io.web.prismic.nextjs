@@ -37,7 +37,7 @@ export default class PrismicHelper {
         return this.hrefResolver;
     }
 
-    static manageLocal(Locales: Array<String>, locale: string) {
+    static manageLocal(Locales: Array<string>, locale: string) {
         const mainLanguage = Locales[0];
         const currentLang = locale !== undefined ? locale : mainLanguage;
         const isMyMainLanguage = mainLanguage === currentLang;

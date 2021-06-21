@@ -4,7 +4,7 @@ import Header from './repeatable/header';
 import Footer from './repeatable/footer';
 import { PrismicHelper } from '../utils';
 
-interface PageInterface { prismicHelper: PrismicHelper, title: string, children:any, header: any, footer: any, headerElementsStart: Array<Component>, headerElementsEnd: Array<Component> }
+interface PageInterface { prismicHelper: PrismicHelper, title: string, children:any, header?: any, footer?: any, headerElementsStart?: Array<any>, headerElementsEnd?: Array<any> }
 const Page = ({ prismicHelper, title, children, header, footer, headerElementsStart = [], headerElementsEnd = [] }: PageInterface) => {
     return (
         <>
@@ -15,7 +15,7 @@ const Page = ({ prismicHelper, title, children, header, footer, headerElementsSt
             </Head>
             <Header prismicHelper={prismicHelper} headerData={header?.data} elementsEnd={headerElementsEnd} />
             <main>{children}</main>
-            <Footer footer={footer} />
+            <Footer footer={footer} /> 
         </>
     )
 };

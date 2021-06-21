@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const LanguageSwitcher = ({ }) => {
-    return <></>
+    return (<></>)
 };
 
 export default LanguageSwitcher;
