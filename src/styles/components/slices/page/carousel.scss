@@ -1,0 +1,59 @@
+.slice__page__carousel {
+    overflow: visible;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.slice__page__carousel__element {
+    margin: 20px auto;
+    box-shadow: rgb(190, 190, 190) 0px 0px 15px;
+    width: 300px;
+}
+
+.slice__page__carousel__title {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.slice__page__carousel__title p{
+    padding: 0;
+    margin: 0;
+}
+
+.slice__page__carousel__description {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.slice__page__carousel__description p {
+    padding: 0;
+    margin: 0;
+}
+
+.slice__page__carousel__links-container-inner button {
+    width: 100%;
+}
+
+.slice__page__carousel__links-icon {
+    height: 24px;
+    width: 24px;
+}
+
+.slice__page__carousel__links-name {
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+.slice__page__carousel__media{
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.slice__page__carousel__media > div{
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}

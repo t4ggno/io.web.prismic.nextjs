@@ -64,6 +64,15 @@ class Effect extends React.Component<EffectProps> {
     }
 }
 
+function parseTextAlign(textAlign: string): string {
+    switch (textAlign) {
+        case "LEFT": return "text-start"
+        case "RIGHT": return "text-end"
+        case "CENTER": return "text-center"
+        default: return "text-start"
+    }
+}
+
 const Links = ({ slice }) => {
     let direction: string, align: string
 
@@ -100,7 +109,6 @@ const Links = ({ slice }) => {
                     if (link.icon_pack?.toUpperCase() == "SOLID") iconPack = "fas";
                     else if (link.icon_pack?.toUpperCase() == "REGULAR") iconPack = "far";
                     else if (link.icon_pack?.toUpperCase() == "BRANDT") iconPack = "fab";
-                    console.log(iconPack, link.icon_name)
 
                     return <div className={`slice__page__headline-description-media-background__links-container-inner d-flex flex-column ${direction}`} key={link.name}>
                         <Link href={link.internal_link ? link.internal_link : link.external_link ? link.external_link : "#"}>
@@ -153,23 +161,52 @@ const Media = ({ slice }) => {
 }
 
 const Description = ({ slice }) => {
+    const textAlign = slice.primary?.text_align?.toUpperCase() ?? "AUTO"
     return (
-        <div className={`slice__page__headline-description-media-background__description ${slice.primary["media-position"].toUpperCase() == "BOTTOM" ? "text-center" : "text-center text-lg-start"}`} style={{ color: slice.primary["description-color"] == "#000000" ? "white" : slice.primary["title-color"], "textAlign": slice.primary["media-position"].toUpperCase() == "BOTTOM" ? "center" : "left" }}>
+        <div className={`slice__page__headline-description-media-background__description ${textAlign == "AUTO" ? slice.primary["media-position"].toUpperCase() == "BOTTOM" ? "text-center" : "text-center text-lg-start" : parseTextAlign(textAlign)}`} style={{ color: slice.primary["description-color"] == "#000000" ? "white" : slice.primary["description-color"] }}>
             {RichText.render(slice.primary.description)}
         </div>
     );
 }
 
 const Title = ({ slice }) => {
+    const textAlign = slice.primary?.text_align?.toUpperCase() ?? "AUTO"
     return (
-        <div className={`slice__page__headline-description-media-background__title ${slice.primary["media-position"].toUpperCase() == "BOTTOM" ? "text-center" : "text-center text-lg-start"}`} style={{ color: slice.primary["title-color"] == "#000000" ? "white" : slice.primary["title-color"] }}>
+        <div className={`slice__page__headline-description-media-background__title ${textAlign == "AUTO" ? slice.primary["media-position"].toUpperCase() == "BOTTOM" ? "text-center" : "text-center text-lg-start" : parseTextAlign(textAlign)}`} style={{ color: slice.primary["title-color"] == "#000000" ? "white" : slice.primary["title-color"] }}>
             {RichText.render(slice.primary.title)}
         </div>
     );
 }
 
 const HeadlineDescriptionImage = ({ slice }) => {
-    if (slice.primary["media-position"].toUpperCase() == "BOTTOM") {
+    if (slice.primary["media-position"] == null || !slice.primary?.media?.name) {
+        return (
+            <section className={`slice__page__headline-description-media-background ${slice.primary.css_classes ?? ""}`} style={{ backgroundImage: `url(${slice.primary.background?.url ?? ''})`, backgroundColor: slice.primary.background_color ?? 'transparent' }}>
+                <div className="container">
+                    <div className="col-12 mb-5 ps-2 pe-2">
+                        <Effect slice={slice} isDescription>
+                            <>
+                                {slice.primary.title && slice.primary.title.length > 0 &&
+                                    <Title slice={slice} />
+                                }
+                            </>
+                            <>
+                                {slice.primary.description && slice.primary.title.length > 0 &&
+                                    <Description slice={slice} />
+                                }
+                            </>
+                            <>
+                                {slice.items && slice.items.length > 0 &&
+                                    <Links slice={slice} />
+                                }
+                            </>
+                        </Effect>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+    else if (slice.primary["media-position"].toUpperCase() == "BOTTOM") {
         return (
             <section className={`slice__page__headline-description-media-background ${slice.primary.css_classes ?? ""}`} style={{ backgroundImage: `url(${slice.primary.background?.url ?? ''})`, backgroundColor: slice.primary.background_color ?? 'transparent' }}>
                 <div className="container">

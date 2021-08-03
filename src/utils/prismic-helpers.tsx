@@ -6,11 +6,11 @@ export default class PrismicHelper {
     private apiEndpoint: string;
     private hrefResolver: (doc: any) => string;
     public client: DefaultClient;
-    private static instances: Array<PrismicHelper> = []
+    private static instance: PrismicHelper;
 
     private constructor() { };
 
-    public static createInstance(instanceName: string, apiEndpoint: string, hrefResolver: (doc: any) => string, accessToken: string, request = null): PrismicHelper {
+    public static createInstance(apiEndpoint: string, hrefResolver: (doc: any) => string, accessToken: string, request = null): PrismicHelper {
 
         // Create new instance
         const newInstance = new PrismicHelper
@@ -19,14 +19,14 @@ export default class PrismicHelper {
         newInstance.client = Prismic.client(apiEndpoint, PrismicHelper.createClientOptions(request, accessToken))
 
         // Add instance to list
-        PrismicHelper.instances[instanceName] = newInstance
+        PrismicHelper.instance = newInstance
 
         // Return new instance
         return newInstance;
     }
 
-    public static getInstance(instanceName: string) {
-        return PrismicHelper.instances[instanceName]
+    public static getInstance() {
+        return PrismicHelper.instance
     }
 
     public getRepositoryName(): string {

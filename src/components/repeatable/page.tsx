@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
-import Header from './repeatable/header';
-import Footer from './repeatable/footer';
-import { PrismicHelper } from '../utils';
+import Header from './header';
+import Footer from './footer';
+import { PrismicHelper } from '../../utils';
 
 interface PageInterface { prismicHelper: PrismicHelper, title: string, children:any, header?: any, footer?: any, headerElementsStart?: Array<any>, headerElementsEnd?: Array<any> }
 const Page = ({ prismicHelper, title, children, header, footer, headerElementsStart = [], headerElementsEnd = [] }: PageInterface) => {
+    console.info("Render page...")
     return (
         <>
             <Head>

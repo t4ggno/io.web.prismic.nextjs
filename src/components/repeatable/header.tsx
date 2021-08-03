@@ -3,6 +3,7 @@ import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import Link from 'next/link';
 import { PrismicHelper } from '../../utils';
 import LanguageSwitcher from '../language-switcher';
+import LinkToPage from '../link-to-page'
 
 enum CategoryType { url, external_url, none }
 
@@ -22,10 +23,10 @@ const SubMenu = ({ prismicHelper, categories = [] }: SubMenuInterface) => {
                             <div className="col-12 col-lg-4" id={category.data.name} key={category.data.name}>
                                 <div className="megamenu-title">
                                     {type == CategoryType.url &&
-                                        <Link href={prismicHelper.getHrefResolver()(category.data.url)} passHref >{category.data.name}</Link>
+                                        <LinkToPage pageId={category.data.url.id}><a>{category.data.name}</a></LinkToPage>
                                     }
                                     {type == CategoryType.external_url &&
-                                        <Link href={category.data.external_url} passHref >{category.data.name}</Link>
+                                        <Link href={category.data.external_url.url} passHref >{category.data.name}</Link>
                                     }
                                     {type == CategoryType.none &&
                                         <span>{category.data.name}</span>
@@ -38,9 +39,7 @@ const SubMenu = ({ prismicHelper, categories = [] }: SubMenuInterface) => {
                                                 <>
                                                     <li className="megamenu-link">
                                                         {type == CategoryType.url &&
-                                                            <Link href={prismicHelper.getHrefResolver()(category.url)} passHref key={category.name} >
-                                                                <a>{category.name}</a>
-                                                            </Link>
+                                                            <LinkToPage pageId={category.url.id}><a>{category.name}</a></LinkToPage>
                                                         }
                                                         {type == CategoryType.external_url &&
                                                             <Link href={category.external_url} passHref key={category.name} >
@@ -90,12 +89,10 @@ const MenuLinks = ({ prismicHelper, categories = [], subcategories = [] }: MenuL
                     }
                     else {
                         if (type == CategoryType.url) {
-                            return <Link href={prismicHelper.getHrefResolver()(category.url)} passHref key={category.name} >
-                                <a>{category.name}</a>
-                            </Link>
+                            <LinkToPage pageId={category.url.id}><a>{category.name}</a></LinkToPage>
                         }
                         else if (type == CategoryType.external_url) {
-                            return <Link href={category.external_url} passHref key={category.name} >
+                            return <Link href={category.url_external.url} passHref key={category.name} >
                                 <a>{category.name}</a>
                             </Link>
                         }
@@ -118,10 +115,12 @@ const Header = ({ prismicHelper, headerData, elementsEnd = [] }: HeaderInterface
             <Navbar bg="light" expand="lg">
                 <Navbar.Brand>
                     <Link href={'/'} passHref>
-                        <picture>
-                            <source srcSet={headerData.logo.url} media="(min-width: 600px)" />
-                            <img src={headerData.logo.small.url} height={50} alt={headerData.logo.alt} />
-                        </picture>
+                        <a>
+                            <picture>
+                                <source srcSet={headerData.logo.url} media="(min-width: 600px)" />
+                                <img src={headerData.logo.small.url} height={50} alt={headerData.logo.alt} />
+                            </picture>
+                        </a>
                     </Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

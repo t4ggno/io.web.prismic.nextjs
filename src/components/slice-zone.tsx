@@ -1,7 +1,5 @@
 import React from 'react'
-import HeadlineDescriptionImage from './slices/page/headline-description-image';
-import Features from './slices/page/features';
-import Seperator from './slices/page/seperator';
+import { Carousel, Seperator, Features, HeadlineDescriptionImage } from './slices/page';
 
 const SliceZone = ({ sliceZone }) => {
     return (
@@ -14,6 +12,8 @@ const SliceZone = ({ sliceZone }) => {
                         return <Features slice={slice} key={`slice-${index}`} />;
                     case 'separator':
                         return <Seperator slice={slice} key={`slice-${index}`} />;
+                    case 'carousel':
+                        return <Carousel slice={slice} key={`slice-${index}`} />;
                     default:
                         console.log(`Slice-Type not found: ${slice.slice_type}`)
                         return null;

@@ -53,7 +53,6 @@
     color: #333 !important;
     box-shadow: none !important;
     display: flex;
-    line-height: 50px;
 }
 
 .navbar .user:active,
@@ -75,6 +74,10 @@
 .navbar .user:active img,
 .navbar .user[aria-expanded="true"] img {
     /*filter: grayscale(0%);*/
+}
+
+.navbar .user.dropdown-toggle.btn.btn-primary{
+    align-items: center;
 }
 
 .navbar-toggler {
@@ -135,9 +138,9 @@
         position: static !important;
     }
     .navbar .megamenu .dropdown-menu {
-        left: 0;
+        left: 5%;
         right: 0;
-        width: 100%;
+        width: 90%;
         margin-top: 0;
         padding-bottom: 40px;
         padding-left: 20px;
@@ -172,4 +175,8 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.company.navbar-brand{
+    display: flex;
 }
